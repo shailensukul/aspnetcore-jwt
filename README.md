@@ -31,7 +31,7 @@ When the project is run, the following users are automatically created:
 ## API Endpoints
 
 | Url        | Comments | Type     | Body or Querystring  |
-| :------------- |:-------------| :-----|
+| :------------- |:-------------| :-----| :-----|
 | https://localhost:5001/api/login/register  | Registers a new user.| POST | { <br/>"email": "shailen@company", <br/>"password" : "1234",<br/>"firstName": "Shailen",<br/>"lastName" : "Sukul"<br/>} |
 | https://localhost:5001/api/account/login | Validates user credentials and issues a token in a cookie. <br/>The JWT token is signed with a secret key AND a user specific salt.<br/> The JWT token is also encrypted. | POST | { <br/> "UserId" : "admin@company", <br/> "Password": "admin" <br/> } |
 | https://localhost:5001/api/account/AddRoles | Adds a user role. Invalidates all existing tokens. | POST | { <br/> "UserId" : "nancy.drew@company", <br/> "Roles" : [ "Customer" ] <br/> } |
