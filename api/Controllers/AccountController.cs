@@ -207,6 +207,14 @@ namespace api.Controllers
             return new ContentResult() { StatusCode = StatusCodes.Status200OK };
         }
 
+        [HttpGet("test2")]
+        [Authorize(Roles = RoleDefinitions.Administrator)]
+        [Authorize(Roles = RoleDefinitions.Customer)]
+        public IActionResult Test2()
+        {
+            return new ContentResult() { StatusCode = StatusCodes.Status200OK };
+        }
+
         [Authorize(Roles = RoleDefinitions.Administrator)]
         [HttpPost("changeUserSalt")]
         public async Task<IActionResult> ChangeUserSalt(UserCredentials credentials)
