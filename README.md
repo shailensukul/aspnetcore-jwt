@@ -1,5 +1,5 @@
 # ASP.Net Core JWT
-The purpose of this repository is to showcase a better, production ready example of JWT implementation in an ASP.Net Web API, rather than the rudmentary samples you encounter in the Microsoft documentation.
+The purpose of this repository is to showcase a better, production-ready example of an JWT implementation in an ASP.Net Web API, rather than the rudimentary samples you encounter in the Microsoft documentation.
 
 ## Goals
 - Production grade security. This entails both signing (with a user specific salt) and encrypting the JWT token and leasing it with a small expiration time
