@@ -10,7 +10,7 @@ Database:
 The sample code uses a self-seeding and self-creating SQLite database.
 The database contains the following table
 
-##User
+## User
 | Column        | Datatype     | Comments  |
 | :------------- |:-------------| :-----|
 | Email      | string |  |
@@ -19,3 +19,12 @@ The database contains the following table
 | Firstname      | string      |    |
 | Lastname      | string      |    |
 | RolesString      | string      | Comma separate list of roles  |
+
+When the project is run, the following users are automatically created:
+| User Email        | Password     | Role(s)  |
+| :------------- |:-------------| :-----|
+| admin@company      | admin | Administrator |
+| nancy.drew@company | office | Office  |
+| rakesh.prasad@company | customer  | Customer  |
+
+
