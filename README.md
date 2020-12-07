@@ -38,5 +38,5 @@ When the project is run, the following users are automatically created:
 | https://localhost:5001/api/account/RemoveRoles | Removes a user role.  Invalidates all existing tokens. <br/> Requires the Administrator role | POST | { <br/> "UserId" : "nancy.drew@company", <br/> "Roles" : [ "Customer" ] <br/> } |
 | https://localhost:5001/api/account/refreshtoken | Gets a JWT token by sending a request with a valid (maybe about to expire) JWT token. <br/>The user salt is unchanged, meaning that if the user is logged in elsewhere, the older token will still work. | POST |  |
 | https://localhost:5001/api/account/test  | Any user with either the Administrator or Customer role should be able to call this endpoint | GET  |  |
-| https://localhost:5001/api/account/test2  | Any user with either the Administrator AND Customer role should be able to call this endpoint | GET  |  |
+| https://localhost:5001/api/account/test2  | Any user with both the Administrator AND Customer role should be able to call this endpoint | GET  |  |
 
