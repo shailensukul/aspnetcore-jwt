@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using api.data.Commands;
 using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
 
 namespace api.Controllers
 {
@@ -80,7 +81,7 @@ namespace api.Controllers
         {
             try
             {
-                if (Request.Headers.TryGetValue("UserID", out var userid))
+                if (Request.Cookies.TryGetValue("user_id", out var userid))
                 {
                     var user = await this.userRepo.Find(userid);
                     if (user == null)
@@ -197,6 +198,21 @@ namespace api.Controllers
             catch (Exception ex)
             {
                 return new ContentResult() { StatusCode = StatusCodes.Status400BadRequest, Content = ex.ToString() };
+            }
+        }
+
+        [Authorize]
+        [HttpGet("roleclaims")]
+        public IActionResult RoleClaims()
+        {
+            try
+            {
+                var roleClaims = string.Join(",", this.User.Identities.SelectMany(i => i.Claims.Where(c => c.Type == ClaimTypes.Role)));
+                return new ContentResult() { Content = roleClaims, StatusCode = StatusCodes.Status200OK };
+            }
+            catch (Exception ex)
+            {                
+                return new ContentResult() { Content = ex.ToString(), StatusCode = StatusCodes.Status500InternalServerError };
             }
         }
 

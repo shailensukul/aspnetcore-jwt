@@ -64,7 +64,8 @@ namespace api
             //    .First(claim => claim.Type == "email")
             //    .Value;
 
-            if (this.httpContextAccessor.HttpContext.Request.Headers.TryGetValue("UserID", out var userid))
+            // if (this.httpContextAccessor.HttpContext.Request.Headers.TryGetValue("UserID", out var userid))
+           if (this.httpContextAccessor.HttpContext.Request.Cookies.TryGetValue("user_id", out var userid))
             {
                 //Retrieve the corresponding Public Key from our data store
                 SecurityKey publicKeyForExternalSystem = GetKeyForClaimedId(userid);

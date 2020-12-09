@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using api.core;
 using api.data.Models;
 using api.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,7 +33,10 @@ namespace api
             services.AddSingleton<IRepository<User>, SQLiteRepository<User>>();
             services.AddHttpContextAccessor();
             services.AddControllers();
+            // use custom authentication
             services.AddTokenAuthentication(Configuration);
+            // use custom authorization
+            //services.AddAuthorization(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,8 +70,8 @@ namespace api
                 var token = context.Request.Cookies["access_token"];
                 if (!string.IsNullOrEmpty(token)) context.Request.Headers.Add("Authorization", "Bearer " + token);
 
-                var userid = context.Request.Cookies["user_id"];
-                if (!string.IsNullOrEmpty(userid)) context.Request.Headers.Add("UserID", userid);
+                //var userid = context.Request.Cookies["user_id"];
+                //if (!string.IsNullOrEmpty(userid)) context.Request.Headers.Add("UserID", userid);
                 await next();
             });
 

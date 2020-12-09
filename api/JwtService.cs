@@ -27,7 +27,6 @@ namespace api
             _expDate = config.GetSection("JwtConfig").GetSection("expirationInMinutes").Value;
             _issuer = config.GetSection("JwtConfig").GetSection("issuer").Value;
             _audience = config.GetSection("JwtConfig").GetSection("audience").Value;
-
         }
 
         public string GenerateSecurityToken(string email, byte[] salt, string[] roles)
@@ -45,8 +44,8 @@ namespace api
                     new List<Claim>
                     {
                         new Claim(ClaimTypes.Email, email)
-                    }
-                    .Concat(roles.Select(r => new Claim(ClaimTypes.Role, r))).ToArray()),
+                    }),
+                    // .Concat(roles.Select(r => new Claim(ClaimTypes.Role, r))).ToArray()),
                 Expires = DateTime.UtcNow.AddMinutes(double.Parse(_expDate)),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
                 EncryptingCredentials = new EncryptingCredentials(
